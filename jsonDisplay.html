@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profiles (JSON Lab)</title>
+    <style>
+        .user-card {
+            border: 1px solid #666;
+            border-radius: 6px;
+            padding: 14px;
+            margin: 10px 0;
+            max-width: 650px;
+            background: #f4f4f4;
+        }
+        .user-card p { margin: 6px 0; }
+        h4 { margin-bottom: 4px; color: #333; }
+    </style>
+</head>
+<body>
+    <h1>User Profiles from JSON</h1>
+    <div id="userContainer"></div>
+
+    <script>
+        const userContainer = document.getElementById("userContainer");
+
+        fetch('userProfiles.json')
+        .then(response => {
+            if (!response.ok)
+                throw new Error('Fetch error: ' + response.status)
+            else
+                return response.json();
+        })
+        .then(json => {
+            json.forEach(user => {
+                const card = document.createElement("div");
+                card.className = "user-card";
+                card.innerHTML = `
+                    <h3>${user.firstName} ${user.lastName}</h3>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Date of Birth:</strong> ${user.dateOfBirth}</p>
+                    <h4>Preferences</h4>
+                    <p>Theme: ${user.preferences.theme}</p>
+                    <p>Language: ${user.preferences.language}</p>
+                    <p>Notifications: ${user.preferences.notifications}</p>
+                    <p>Newsletter Subscription: ${user.preferences.subscription}</p>
+                    <h4>Address</h4>
+                    <p>Street: ${user.address.street}</p>
+                    <p>City: ${user.address.city}</p>
+                    <p>State: ${user.address.state}</p>
+                    <p>Zip Code: ${user.address.zipCode}</p>
+                `;
+                userContainer.appendChild(card);
+            })
+        })
+        .catch(err => console.error('Fetch error: ' + err.message));
+    </script>
+</body>
+</html>
