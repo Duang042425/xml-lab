@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<catalogue>
+    <book id="BOOK1">
+        <title> Web Development </title>
+        <author> abc </author>
+        <price> 55 </price>
+    </book>
+    <book id="BOOk2">
+        <title> Computor Science and Programming </title>
+        <author> bcd </author>
+        <price> 66 </price>
+    </book>
+    <book id="BOOk3">
+        <title> Algorithms and Data Structres </title>
+        <author> cde</author>
+        <price> 77 </price>
+    </book>
+</catalogue>
